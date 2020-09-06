@@ -1,1 +1,75 @@
-<p>employee works!</p>
+<form [formGroup]="service.form" class="normal-form">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key" />
+        <mat-form-field>
+          <input formControlName="fullName" matInput placeholder="Full Name" />
+          <mat-error> This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="email" matInput placeholder="Email" />
+          <mat-error> This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="mobile" matInput placeholder="Mobile" />
+          <mat-error> This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="city" matInput placeholder="City" />
+          <mat-error> This field is required</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+        <!-- Gendre Picker -->
+        <div class="add-bottom-padding">
+          <mat-radio-group formControlName="gendre">
+            <mat-radio-button value="1">Male</mat-radio-button>
+            <mat-radio-button value="2">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <!-- Departament picker -->
+        <mat-form-field>
+          <mat-select formControlName="departament" placeholder="Deparments">
+            <mat-option>None</mat-option>
+            <ng-container *ngFor="let departament of departments">
+              <mat-option value="{{ departament.id }}">
+                {{ departament.value }}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            formControlName="hireDate"
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Hire Date "
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error> This field is required</mat-error>
+        </mat-form-field>
+
+        <div class="add-bottom-padding">
+          <mat-checkbox formControlName="isPermament"
+            >Permanet Employee</mat-checkbox
+          >
+          <mat-error> This field is required</mat-error>
+        </div>
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit">
+            Submit
+          </button>
+          <button mat-raised-button color="warn">Clear</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
